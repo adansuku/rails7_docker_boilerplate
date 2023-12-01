@@ -1,0 +1,82 @@
+# Common MySQL connection settings
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: the_user
+  password: the_password
+  host: db
+  port: 3306
+
+# Development environment
+development:
+  <<: *default
+  database: development
+
+# Test environment
+test:
+  <<: *default
+  database: test
+
+# Production environment
+production:
+  <<: *default
+  database: production
+  username: the_user_production
+  password: the_password_production
+
+# Configuration for Multiple Databases (Commented)
+##### Multiple databases
+#### Default MySQL settings
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8mb4
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: the_user
+#   password: the_password
+#   host: db
+#   port: 3306
+
+#### Primary database
+# primary:
+#   <<: *default
+#   database: primary_database_name
+
+#### Secondary database
+# secondary:
+#   <<: *default
+#   database: secondary_database_name
+#   username: secondary_user
+#   password: secondary_password
+
+# Development with Multiple Databases
+# development:
+#   <<: *default
+#   primary:
+#     <<: *primary
+#     database: primary_development
+#   secondary:
+#     <<: *secondary
+#     database: secondary_development
+
+# Test with Multiple Databases
+# test:
+#   <<: *default
+#   primary:
+#     <<: *primary
+#     database: primary_test
+#   secondary:
+#     <<: *secondary
+#     database: secondary_test
+
+# Production with Multiple Databases
+# production:
+#   <<: *default
+#   primary:
+#     <<: *primary
+#     database: primary_production
+#     username: the_user_production
+#     password: the_password_production
+#   secondary:
+#     <<: *secondary
+#     database: secondary_production
